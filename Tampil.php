@@ -60,39 +60,73 @@
     </div>
   </header><!-- End Header -->
 
-<section id="form" class="form-mf sect-pt4 route">
-    <div class="container mt-4 mb-4">
-      <h2 class="text-center">Data yang Diterima</h2>
-        <ul>
-          <li><strong>Nama Lengkap :</strong> <span id="outputnamalengkap"></span></li>
-          <li><strong>NamaUser :</strong> <span id="outputNamauser"></span></li>
-          <li><strong>E-mail :</strong> <span id="outputemail"></span></li>
-          <li><strong>Agama :</strong> <span id="outputagama"></span></li>
-          <li><strong>Jenis Kelamin :</strong> <span id="outputJenisKelamin"></span></li>
-          <li><strong>hobi:</strong> <span id="outputHobi"></span></li>
-        </ul>
-    </div>
-    
-    <script>
-      // Mendapatkan nilai-nilai dari parameter URL (GET)
-        const params = new URLSearchParams(window.location.search);
-        const namalengkap = params.get('namalengkap');
-        const namauser = params.get('Namauser');
-        const email = params.get('email');
-        const agama = params.get('agama');
-        const jeniskelamin = params.get('JenisKelamin');
-        const hobi = params.get('hobi');
-    
-       // Menampilkan data ke dalam dokumen HTML
-        document.getElementById('outputnamalengkap').textContent = namalengkap;
-        document.getElementById('outputNamauser').textContent = namauser;
-        document.getElementById('outputemail').textContent = email;
-        document.getElementById('outputegama').textContent = agama;
-        document.getElementById('outputJenisKelamin').ariaChecked = jeniskelamin;
-        document.getElementById('outputHobi').ariaChecked = hobi;
-    </script>
-  </section>
+<<main id="main"><!-- Start main -->
 
+  <!-- ======= Start Hasil Form ======= -->
+  <section id="form" class="form-mf sect-pt4 route">
+    <div class="container mt-5">
+      <h1 class="text-center">Hasil Form Biodata</h1>
+        <table class="table" border="2">
+          <thead>
+            <?php
+              if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                // kolom nama lengkap
+                echo "<tr>";
+                echo "<td>"."Nama Lengkap"."</td>";
+                echo "<td>".":"."</td>";
+                echo "<td>".$fullname = $_POST['fullname']."</td>";
+                echo "</tr>";
+                // kolom nim
+                echo "<tr>";
+                echo "<td>"."NIM"."</td>";
+                echo "<td>".":"."</td>";
+                echo "<td>".$nim = $_POST['nim']."</td>";
+                echo "</tr>";
+                // kolom e-mail
+                echo "<tr>";
+                echo "<td>"."E-mail"."</td>";
+                echo "<td>".":"."</td>";
+                echo "<td>".$email = $_POST['email']."</td>";
+                echo "</tr>";
+                // kolom username
+                echo "<tr>";
+                echo "<td>"."Username"."</td>";
+                echo "<td>".":"."</td>";
+                echo "<td>".$username = $_POST['username']."</td>";
+                echo "</tr>";
+                // kolom fakultas
+                echo "<tr>";
+                echo "<td>"."Fakultas"."</td>";
+                echo "<td>".":"."</td>";
+                echo "<td>".$prodi = $_POST['fakultas']."</td>";
+                echo "</tr>";
+                // kolom jenis kelamin
+                echo "<tr>";
+                echo "<td>"."Jenis Kelamin"."</td>";
+                echo "<td>".":"."</td>";
+                echo "<td>".$jeniskelamin = $_POST['jeniskelamin']."</td>";
+                echo "</tr>";
+                // kolom Asal Kabupaten
+                if (isset($_POST['asalkabupaten'])) {
+                    $asalkabupaten = $_POST['asalkabupaten'];
+                    echo "<tr>";
+                    echo "<td>"."Asal Kabupaten"."</td>";
+                    echo "<td>".":"."</td>";
+                    for ($i=0; $i < count($asalkabupaten) ; $i++){
+                        echo "<td>"."- ".$asalkabupaten[$i]."</td>";
+                        echo "</tr>";
+                    }
+                }
+              }
+            ?>
+          </thead>
+        </table>
+      <a href="tugasjavascripts.html" class="previous">&laquo; Previous</a>
+    </div>
+  </section>
+  <!-- ======= End Hasil Form ======= -->
+
+</main><!-- End #main -->
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
 
