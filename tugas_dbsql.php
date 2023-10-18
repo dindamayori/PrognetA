@@ -64,7 +64,7 @@
           <li><a href="#hero">HOME</a></li>
           <li><a href="#about">ABOUT</a></li>
           </li>
-          <li><a href="tugas_dbsql.php">BIODATA</a></li>
+          <li><a href="tugas_dbsql.php">TUGAS PROGNET 3</a></li>
         </ul>
       </nav><!-- .navbar -->
     </div>
@@ -79,12 +79,12 @@
       <h1 class="text-center mb-2">Form Biodata Mahasiswa</h1>
         <form name="formBiodata" action="dbsql_insert.php" method="post" onsubmit="return validateForm()">
         <div class="form-group mb-3">
-            <label><strong>Nama Lengkap:</strong></label>
-            <input type="text" name="fullname" id="fullname" placeholder="Nama Lengkap" class="form-control">
-          </div>
-          <div class="form-group mb-3">
             <label><strong>Nim :</strong></label>
             <input type="text" name="nim" id="nim" placeholder="Nim" class="form-control">
+          </div>
+          <div>
+            <label><strong>Nama Lengkap:</strong></label>
+            <input type="text" name="fullname" id="fullname" placeholder="Nama Lengkap" class="form-control">
           </div>
           <div>
             <label"><strong>Jenis Kelamin:</strong></label>
@@ -134,16 +134,16 @@
       </div>
     <script>
       function validateForm() {
+       // Validasi NIM
+        if (document.forms["formBiodata"]["nim"].value == "") {
+            alert("Masukkan Nim Anda");
+            document.forms["formBiodata"]["nim"].focus();
+            return false;
+        }
         // Validasi Nama Lengkap
         if (document.forms["formBiodata"]["fullname"].value == "") {
             alert("Masukkan Nama Lengkap Anda");
             document.forms["formBiodata"]["fullname"].focus();
-            return false;
-        }
-        // Validasi NIM
-        if (document.forms["formBiodata"]["nim"].value == "") {
-            alert("Masukkan Nim Anda");
-            document.forms["formBiodata"]["nim"].focus();
             return false;
         }
         // Validasi Jenis Kelamin

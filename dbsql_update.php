@@ -9,27 +9,27 @@
 
     if(isset($_POST['update'])){
         //mengambil data dari form//
-        $Nama_Lengkap =$_POST['Nama Lengkap'];
-        $Nim=$_POST['nim'];
-        $Jenis_Kelamin=$_POST['jeniskelamin'];
-        $Hoby=$_POST['hoby'];
-        $Fakultas=$_POST['fakultas'];
-        $Tanggal_Lahir=$_POST['tgllahir'];
-        $Email=$_POST['email'];
-        $Kota_Asal=$_POST['kota'];
+        $nim=$_POST['nim'];
+        $nama_lengkap=$_POST['fullname'];
+        $jenis_kelamin=$_POST['jeniskelamin'];
+        $hobi=$_POST['hoby'];
+        $fakultas=$_POST['fakultas'];
+        $tanggal_lahir=$_POST['tgllahir'];
+        $email=$_POST['email'];
+        $kota_asal=$_POST['kota'];
 
     // proses update
     $sql = "UPDATE tb_biodata SET
-           fullname ='$Nama_Lengkap', nim ='$Nim',jeniskelamin ='$Jenis_Kelamin',hoby ='$Hoby',fakultas ='$Fakultas',tgllahir ='$Tanggal_Lahir',email ='$Email',kota ='$Kota_Asal'
-            WHERE nim ='$Nim'";
+            nim ='$nim',nama_lengkap ='$nama_lengkap',jenis_kelamin ='$jenis_kelamin',hobi ='$hobi',fakultas ='$fakultas',tanggal_lahir ='$tanggal_lahir',email ='$email',kota_asal ='$kota_asal'
+            WHERE nim ='$nim'";
     if ($conn->query($sql) === TRUE) {
         header("Location:dbsql_select.php");
         }
     }
 
-    $idtoupdate=$_GET['fullname'];
+    $idtoupdate=$_GET['nim'];
 
-    $sql = "SELECT * FROM tb_biodata WHERE Nama_Lengkap='$idtoupdate'";
+    $sql = "SELECT * FROM tb_biodata WHERE nim='$idtoupdate'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
 ?>
@@ -85,44 +85,47 @@
         <h1>Dinda Mayori<span>.</span></h1>
       </a>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="#hero">HOME</a></li>
-          <li><a href="#about">ABOUT</a></li>
-          </li>
-          <li><a href="tugas_dbsql.php">BIODATA</a></li>
-        </ul>
-      </nav><!-- .navbar -->
+  <!-- ======= Start Navbar ======= -->
+  <nav id="navbar" class="navbar">
+    <ul>
+      <li><a class="nav-link scrollto" href="index.html">Home</a></li>
+      <li><a class="nav-link scrollto active" href="index.html#taks">Taks</a></li>
+      <li><a class="nav-link scrollto" href="dbsql_select.php">List Biodata</a></li>
+    </ul>
+    <i class="bi bi-list mobile-nav-toggle"></i>
+  </nav>
+  <!-- ======= End navbar ======= -->
     </div>
-  </header><!-- End Header -->
+  </header>
+  <!-- ======= End Header ======= -->
 
   <main id="main"><!-- Start main -->
 
- <!-- ======= Start Form ======= -->
- <section id="form" class="form-mf sect-pt4 route">
+  <!-- ======= Start Hasil Form ======= -->
+  <section id="form" class="form-mf sect-pt4 route">
     <div class="container mt-4">
       <h1 class="text-center mb-2">Form Biodata Mahasiswa</h1>
-      <form name="formBiodata" action="" method="post" onsubmit="return validateForm()">
+        <form name="formBiodata" action="" method="post" onsubmit="return validateForm()">
         <div class="form-group mb-3">
-            <label><strong>Nama Lengkap:</strong></label>
-            <input type="text" name="fullname" id="fullname" placeholder="Nama Lengkap" class="form-control">
+            <label><strong>NIM :</strong></label>
+            <input type="text" name="nim" id="nim" placeholder="NIM" class="form-control" value="<?php echo $row['nim']; ?>">
           </div>
           <div class="form-group mb-3">
-            <label><strong>Nim :</strong></label>
-            <input type="text" name="nim" id="nim" placeholder="Nim" class="form-control">
+            <label><strong>Nama lengkap :</strong></label>
+            <input type="text" name="fullname" id="fullname" placeholder="Nama Lengkap" class="form-control" value="<?php echo $row['nama_lengkap']; ?>">
           </div>
           <div>
-            <label"><strong>Jenis Kelamin:</strong></label>
-            <p><input class="me-1" type='radio' name='jeniskelamin' id="jeniskelamin" value='Laki - Laki'>LAKI - LAKI</p>
-            <p><input class="me-1" type='radio' name='jeniskelamin' id="jeniskelamin" value='Perempuan'>PEREMPUAN</p>
-            <p><input class="me-1" type='radio' name='jeniskelamin' id="jeniskelamin" value='Tidak ingin Memberi Tahu'>LAINNYA</p>
+            <label"><strong>Jenis Kelamin :</strong></label>
+            <p><input class="me-1" type='radio' name='jeniskelamin' id="jeniskelamin" value='Laki - Laki'>laki - laki</p>
+            <p><input class="me-1" type='radio' name='jeniskelamin' id="jeniskelamin" value='Perempuan'>Perempuan</p>
+            <p><input class="me-1" type='radio' name='jeniskelamin' id="jeniskelamin" value='Tidak ingin Memberi Tahu'>Lainnya</p>
           </div>
           <div class="form-group mb-3">
-            <label><strong>Hoby :</strong></label>
-            <input type="text" name="hoby" id="hoby" placeholder="Hoby" class="form-control">
+            <label><strong>Hobi :</strong></label>
+            <input type="text" name="hoby" id="hoby" placeholder="hoby" class="form-control" value="<?php echo $row['hobi']; ?>">
           </div>
           <div class="form-group mb-3">
-            <label><strong>Fakultas :</strong></label>
+          <label><strong>Fakultas :</strong></label>
             <select name="fakultas" id="fakultas" class="form-control">
               <option selected>Pilih Fakultas</option>
               <option value="Fakultas Ilmu Budaya">Fakultas Ilmu Budaya</option>
@@ -142,33 +145,33 @@
           </div>
           <div class="form-group mb-3">
             <label><strong>Tanggal Lahir :</strong></label>
-            <input type="date" name="tgllahir" id="tgllahir" class="form-control" placeholder="Tanggal Lahir">
+            <input type="date" name="tgllahir" id="tgllahir" class="form-control" placeholder="Tanggal Lahir" value="<?php echo $row['tanggal_lahir']; ?>">
           </div>
           <div class="form-group mb-3">
             <label><strong>Email :</strong></label>
-            <input type="email" name="email" id="email" placeholder="name@example.com" class="form-control">
+            <input type="email" name="email" id="email" placeholder="name@example.com" class="form-control" value="<?php echo $row['email']; ?>">
           </div>
           <div class="form-group mb-3">
             <label><strong>Kota Asal :</strong></label>
-            <input type="text" name="kota" id="kota" class="form-control" placeholder="Kota">
+            <input type="text" name="kota" id="kota" class="form-control" placeholder="kota" value="<?php echo $row['kota_asal']; ?>">
           </div>
           <div>
-            <button type="submit" name="submit" class="btn btn-primary mb-4">Submit</button>
+            <button type="submit" name="update" value="update" class="btn btn-primary mb-4">Update</button>
           </div>
         </form>
       </div>
     <script>
       function validateForm() {
+        // Validasi NIM
+        if (document.forms["formBiodata"]["nim"].value == "") {
+            alert("Masukkan NIM Anda");
+            document.forms["formBiodata"]["nim"].focus();
+            return false;
+        }
         // Validasi Nama Lengkap
         if (document.forms["formBiodata"]["fullname"].value == "") {
             alert("Masukkan Nama Lengkap Anda");
             document.forms["formBiodata"]["fullname"].focus();
-            return false;
-        }
-        // Validasi NIM
-        if (document.forms["formBiodata"]["nim"].value == "") {
-            alert("Masukkan Nim Anda");
-            document.forms["formBiodata"]["nim"].focus();
             return false;
         }
         // Validasi Jenis Kelamin
@@ -183,9 +186,9 @@
             alert("Pilih Jenis Kelamin Anda");
             return false;
           }
-        // Validasi Hoby
+        // Validasi Hobi
         if (document.forms["formBiodata"]["hoby"].value == "") {
-            alert("Masukkan Hoby Anda");
+            alert("Masukkan Hobi Anda");
             document.forms["formBiodata"]["hoby"].focus();
             return false;
         }
@@ -209,7 +212,7 @@
         }
         // Validasi Kota Asal
         if (document.forms["formBiodata"]["kota"].value == "") {
-            alert("Masukkan Kota Anda");
+            alert("Masukkan Kota Asal Anda");
             document.forms["formBiodata"]["kota"].focus();
             return false;
         }
@@ -220,72 +223,20 @@
 
 </main><!-- End #main -->
 
- <!-- ======= Footer ======= -->
- <footer id="footer" class="footer">
-
-<div class="container">
-  <div class="row gy-3">
-    <div class="col-lg-3 col-md-6 d-flex">
-      <i class="bi bi-geo-alt icon"></i>
-      <div>
-        <h4>Address</h4>
-        <p>
-          A108 Adam Street <br>
-          New York, NY 535022 - US<br>
-        </p>
-      </div>
-
-    </div>
-
-    <div class="col-lg-3 col-md-6 footer-links d-flex">
-      <i class="bi bi-telephone icon"></i>
-      <div>
-        <h4>Reservations</h4>
-        <p>
-          <strong>Phone:</strong> +1 5589 55488 55<br>
-          <strong>Email:</strong> info@example.com<br>
-        </p>
+  <!-- ======= Footer ======= -->
+  <footer class="bg-dark">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="copyright-box">
+            <p class="copyright">&copy; Copyright <strong>Portofolio</strong>. All Rights Reserved</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="col-lg-3 col-md-6 footer-links d-flex">
-      <i class="bi bi-clock icon"></i>
-      <div>
-        <h4>Opening Hours</h4>
-        <p>
-          <strong>Mon-Sat: 11AM</strong> - 23PM<br>
-          Sunday: Closed
-        </p>
-      </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6 footer-links">
-      <h4>Follow Us</h4>
-      <div class="social-links d-flex">
-        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div class="container">
-  <div class="copyright">
-    &copy; Copyright <strong><span>Dinda Mayori</span></strong>. All Rights Reserved
-  </div>
-  <div class="credits">
-    <!-- All the links in the footer should remain intact. -->
-    <!-- You can delete the links only if you purchased the pro version. -->
-    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/ -->
-    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-  </div>
-</div>
-
-</footer><!-- End Footer -->
+  </footer>
+  <!-- ======= End  Footer ======= -->
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

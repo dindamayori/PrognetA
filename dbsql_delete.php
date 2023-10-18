@@ -8,7 +8,7 @@
     $conn = new mysqli($servername, $username, $password, $dbname);
     $idtodelete = $_GET['nim'];
 
-    $sql = "DELETE FROM tb_biodata WHERE Nim='$idtodelete'";
+    $sql = "DELETE FROM tb_biodata WHERE nim='$idtodelete'";
     if ($conn->query($sql) === TRUE){
         header("Location:dbsql_select.php");
     }

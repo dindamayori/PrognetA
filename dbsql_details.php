@@ -84,53 +84,53 @@
                 $sql = "SELECT * FROM tb_biodata WHERE Nim='$idtodetails'";
                 $result = $conn->query($sql);
                 while($row = $result->fetch_assoc()) {
-                    // kolom NAMA LENGKAP
-                    echo "<tr>";
-                    echo "<td>"."Nama Lengkap"."</td>";
-                    echo "<td>".":"."</td>";
-                    echo "<td>".$row['Nama_Lengkap']."</td>";
-                    echo "</tr>";
                     // kolom NIM
                     echo "<tr>";
                     echo "<td>"."Nim"."</td>";
                     echo "<td>".":"."</td>";
-                    echo "<td>".$row['Nim']."</td>";
+                    echo "<td>".$row['nim']."</td>";
+                    echo "</tr>";
+                    // kolom NAMA LENGKAP
+                    echo "<tr>";
+                    echo "<td>"."Nama Lengkap"."</td>";
+                    echo "<td>".":"."</td>";
+                    echo "<td>".$row['nama_lengkap']."</td>";
                     echo "</tr>";
                     // kolom jenis kelamin
                     echo "<tr>";
                     echo "<td>"."Jenis Kelamin"."</td>";
                     echo "<td>".":"."</td>";
-                    echo "<td>".$row['Jenis_Kelamin']."</td>";
+                    echo "<td>".$row['jenis_kelamin']."</td>";
                     echo "</tr>";
                     // kolom HOBY
                     echo "<tr>";
                     echo "<td>"."Hoby"."</td>";
                     echo "<td>".":"."</td>";
-                    echo "<td>".$row['Hoby']."</td>";
+                    echo "<td>".$row['hobi']."</td>";
                     echo "</tr>";
                     // kolom FAKULTAS
                     echo "<tr>";
                     echo "<td>"."Fakultas"."</td>";
                     echo "<td>".":"."</td>";
-                    echo "<td>".$row['Fakultas']."</td>";
+                    echo "<td>".$row['fakultas']."</td>";
                     echo "</tr>";
                     // kolom tanggal lahir
                     echo "<tr>";
                     echo "<td>"."Tanggal Lahir"."</td>";
                     echo "<td>".":"."</td>";
-                    echo "<td>".$row['Tanggal_Lahir']."</td>";
+                    echo "<td>".$row['tanggal_lahir']."</td>";
                     echo "</tr>";
                     // kolom e-mail
                     echo "<tr>";
                     echo "<td>"."Email"."</td>";
                     echo "<td>".":"."</td>";
-                    echo "<td>".$row['Email']."</td>";
+                    echo "<td>".$row['email']."</td>";
                     echo "</tr>";
                     // kolom ASAL KOTA
                     echo "<tr>";
                     echo "<td>"."Kota Asal"."</td>";
                     echo "<td>".":"."</td>";
-                    echo "<td>".$row['Kota_Asal']."</td>";
+                    echo "<td>".$row['kota_asal']."</td>";
                     echo "</tr>";
                 }
             ?>

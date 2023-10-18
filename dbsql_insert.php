@@ -7,8 +7,8 @@
     // membentuk koneksi ke database mysql
     $conn = new mysqli($servername, $username, $password, $dbname);
 
-    $sql = "INSERT INTO tb_biodata (Nama_Lengkap,Nim,Jenis_Kelamin, Hoby, Fakultas, Tanggal_Lahir, Email, Kota_Asal) VALUES
-            ('$_POST[fullname]','$_POST[nim]','$_POST[jeniskelamin]','$_POST[hoby]','$_POST[fakultas]','$_POST[tgllahir]','$_POST[email]','$_POST[kota]')";
+    $sql = "INSERT INTO tb_biodata (nim,nama_lengkap,jenis_kelamin,hobi,fakultas,tanggal_lahir,email,kota_asal) VALUES
+            ('$_POST[nim]','$_POST[fullname]','$_POST[jeniskelamin]','$_POST[hoby]','$_POST[fakultas]','$_POST[tgllahir]','$_POST[email]','$_POST[kota]')";
     if ($conn->query($sql) === TRUE){
         echo "data behasil";
     }
@@ -21,29 +21,50 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Tugas Database MYSQL - CRUD Form Biodata</title>
+  <title>Dinda Mayori ProgNet - Index</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/logo-home-page.png" rel="icon">
-  <link href="assets/img/logo-home-page.png" rel="logo-icon">
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Yummy
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
 
 <body>
+
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top bg-image" style="background-image: url(assets/img/home-bg.jpg)">
+  <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
-      <h1 class="logo"><a href="index.html">Dinda Mayori</a></h1>
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1>Dinda Mayori<span>.</span></h1>
+      </a>
+
   <!-- ======= Start Navbar ======= -->
   <nav id="navbar" class="navbar">
     <ul>
@@ -70,15 +91,15 @@
               if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // kolom nim
                 echo "<tr>";
-                echo "<td>"."Nama Lengkap"."</td>";
+                echo "<td>"."Nim"."</td>";
                 echo "<td>".":"."</td>";
-                echo "<td>".$nim = $_POST['fullname']."</td>";
+                echo "<td>".$nim = $_POST['nim']."</td>";
                 echo "</tr>";
                 // kolom nama lengkap
                 echo "<tr>";
-                echo "<td>"."Nim"."</td>";
+                echo "<td>"."Nama Lengkap"."</td>";
                 echo "<td>".":"."</td>";
-                echo "<td>".$fullname = $_POST['nim']."</td>";
+                echo "<td>".$fullname = $_POST['fullname']."</td>";
                 echo "</tr>";
                 // kolom jenis kelamin
                 echo "<tr>";
@@ -112,7 +133,7 @@
                 echo "</tr>";
                 // kolom hobi
                 echo "<tr>";
-                echo "<td>".""."<Kota Asal/td>";
+                echo "<td>"."Kota"."</td>";
                 echo "<td>".":"."</td>";
                 echo "<td>".$kota = $_POST['kota']."</td>";
                 echo "</tr>";
